@@ -2,11 +2,7 @@ import type { NextPage } from 'next';
 import css from '../styles/login.module.css';
 
 const Login: NextPage = () => {
-    return (
-        <>
-            
-        </>
-    )
-}
+  return <></>;
+};
 
-export default Login
+export default Login;

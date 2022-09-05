@@ -2,11 +2,7 @@ import type { NextPage } from 'next';
 import css from '../styles/index.module.css';
 
 const Home: NextPage = () => {
-	return (
-		<>
+  return <></>;
+};
 
-		</>
-	)
-}
-
-export default Home
+export default Home;
