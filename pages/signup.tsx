@@ -3,6 +3,8 @@ import css from '../styles/signup.module.css';
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getCookie } from 'cookies-next';
+import Header from '../component/Header';
+import PageWrapper from '../component/PageWrapper';
 
 const Signup: NextPage = () => {
   const [name, setName] = useState('');
@@ -65,39 +67,49 @@ const Signup: NextPage = () => {
     <>
       {!isLoading && (
         <>
-          <form onSubmit={submit}>
-            <input
-              placeholder="이름"
-              required
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-            />
-            <br />
-            <input
-              placeholder="이메일"
-              required
-              onChange={(e) => setEmail(e.target.value.trim())}
-              value={email}
-            />
-            <br />
-            <input
-              type="password"
-              placeholder="비밀번호"
-              required
-              onChange={(e) => setPassword(e.target.value.trim())}
-              value={password}
-            />
-            <br />
-            <input
-              type="password"
-              placeholder="비밀번호 다시 입력"
-              required
-              onChange={(e) => setCheckPassword(e.target.value.trim())}
-              value={checkPassword}
-            />
-            <br />
-            <button type="submit">Submit</button>
-          </form>
+          <Header />
+          <PageWrapper>
+            <form onSubmit={submit} className={css.container}>
+              <h1 style={{ marginTop: 0 }}>회원가입</h1>
+              <input
+                className={css.input}
+                placeholder="이름"
+                required
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+              />
+              <br />
+              <input
+                className={css.input}
+                placeholder="이메일"
+                required
+                onChange={(e) => setEmail(e.target.value.trim())}
+                value={email}
+              />
+              <br />
+              <input
+                className={css.input}
+                type="password"
+                placeholder="비밀번호"
+                required
+                onChange={(e) => setPassword(e.target.value.trim())}
+                value={password}
+              />
+              <br />
+              <input
+                className={css.input}
+                type="password"
+                placeholder="비밀번호 다시 입력"
+                required
+                onChange={(e) => setCheckPassword(e.target.value.trim())}
+                value={checkPassword}
+              />
+              <br />
+              <button className={css.button} type="submit">
+                회원가입
+              </button>
+            </form>
+          </PageWrapper>
         </>
       )}
     </>

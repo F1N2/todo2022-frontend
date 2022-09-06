@@ -1,0 +1,10 @@
+.title {
+    width: 60%;
+    margin: 16px auto 24px;
+}
+
+@media (max-width: 790px) {
+    .title {
+        width: 90%;
+    }
+}

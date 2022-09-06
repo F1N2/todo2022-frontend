@@ -7,6 +7,7 @@ import Head from 'next/head';
 import Header from '../component/Header';
 import PageWrapper from '../component/PageWrapper';
 import TodoList from '../component/TodoList';
+import Today from '../component/Today';
 
 const Home: NextPage = () => {
   const [isLoading, setLoading] = useState(true);
@@ -59,9 +60,10 @@ const Home: NextPage = () => {
       </Head>
       {!isLoading && (
         <>
-          <Header />
+          <Header logged={true} />
           <PageWrapper>
-            <h1>안녕하세요, {user.name}님!</h1>
+            <h1 className={css.title}>안녕하세요, {user.name}님!</h1>
+            <Today />
             <TodoList />
           </PageWrapper>
         </>

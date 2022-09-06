@@ -1,17 +1,11 @@
 .container {
-    width: 60%;
     background-color: white;
+    width: 60%;
     margin: 0 auto;
     margin-block: 12px;
 }
 
-.todo_list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.todo {
+.today {
     background-color: white;
     display: flex;
     flex-direction: row;
@@ -24,7 +18,7 @@
     margin: 5px;
 }
 
-.todo_input {
+.today_input {
     width: 80%;
     height: 32px;
     margin-left: 3px;
@@ -43,7 +37,7 @@
         background-color: black;
     }
 
-    .todo {
+    .today {
         background-color: black;
     }
 }
