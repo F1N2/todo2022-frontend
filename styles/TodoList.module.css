@@ -1,0 +1,10 @@
+.container {
+    height: 80%;
+    background-color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+    .container {
+        background-color: black;
+    }
+}

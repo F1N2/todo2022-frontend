@@ -42,6 +42,7 @@ const Login: NextPage = () => {
       }
       if (data.status == 400)
         return alert('계정이 존재하지 않거나 비밀번호가 틀렸습니다.');
+
       return alert('알 수 없는 오류가 발생하였습니다.');
     } catch (e) {
       return alert('알 수 없는 오류가 발생하였습니다.');
@@ -56,7 +57,7 @@ const Login: NextPage = () => {
             <input
               placeholder="이메일"
               required
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value.trim())}
               value={email}
             />
             <br />
@@ -64,7 +65,7 @@ const Login: NextPage = () => {
               type="password"
               placeholder="비밀번호"
               required
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value.trim())}
               value={password}
             />
             <br />

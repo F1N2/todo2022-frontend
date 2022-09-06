@@ -76,7 +76,7 @@ const Signup: NextPage = () => {
             <input
               placeholder="이메일"
               required
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value.trim())}
               value={email}
             />
             <br />
@@ -84,7 +84,7 @@ const Signup: NextPage = () => {
               type="password"
               placeholder="비밀번호"
               required
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value.trim())}
               value={password}
             />
             <br />
@@ -92,7 +92,7 @@ const Signup: NextPage = () => {
               type="password"
               placeholder="비밀번호 다시 입력"
               required
-              onChange={(e) => setCheckPassword(e.target.value)}
+              onChange={(e) => setCheckPassword(e.target.value.trim())}
               value={checkPassword}
             />
             <br />
