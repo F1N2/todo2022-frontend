@@ -28,7 +28,6 @@
     width: 80%;
     height: 32px;
     margin-left: 3px;
-    background: #040404;
     border-radius: 8px;
 }
 
@@ -39,11 +38,10 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    .container {
+    .container, .todo {
         background-color: black;
     }
-
-    .todo {
-        background-color: black;
+    .todo_input {
+        background-color: #040404;
     }
 }
