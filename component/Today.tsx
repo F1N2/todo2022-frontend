@@ -1,79 +1,89 @@
-import { useEffect, useState } from 'react';
 import css from '../styles/Today.module.css';
-import { Today as IToday } from '../types/Today';
+import { CSSProperties, useEffect, useState } from 'react';
+import {
+  addToday,
+  getMyToday,
+  getOtherToday,
+  Today as IToday,
+} from '../module/today';
+import { useAppSelector } from '../app/hooks';
 
-const Today = () => {
-  const [isLoading, setLoading] = useState(true);
-  const [content, setContent] = useState('');
-  const [today, setToday] = useState<IToday | null>(null);
-
-  const onCreate = async (content: string) => {
-    const data = await fetch(`/api/today`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({ content: content }),
-    });
-    const json = await data.json();
-    json.created = new Date(json.created);
-    json.updated = new Date(json.updated);
-    setToday(json as IToday);
-    setContent('');
-  };
-
+const Today = ({
+  className = '',
+  style = {},
+}: {
+  className?: string;
+  style?: CSSProperties;
+}) => {
+  const [isLoaded, setLoaded] = useState(false);
+  const [isDark, setDark] = useState(false);
+  const [today, setToday] = useState('');
+  const [todayExist, setTodayExist] = useState(false);
+  const [otherToday, setOtherToday] = useState<IToday[]>([]);
+  const { user } = useAppSelector((state) => state.user);
   useEffect(() => {
-    if (isLoading)
-      (async () => {
-        const data = await fetch(`/api/today`, { method: 'GET' });
-        const json = await data.json();
-        if (json.length <= 0) {
-          setLoading(false);
-          return;
-        }
-        json[0].created = new Date(json[0].created);
-        json[0].updated = new Date(json[0].updated);
-        setToday(json[0] as IToday);
-        setLoading(false);
-      })();
-  }, [isLoading]);
+    setDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    (async () => {
+      const data = await getMyToday();
+      if (data) setToday(data.content);
+      setOtherToday(await getOtherToday(user!.id));
+      setTodayExist(!!data);
+      setLoaded(true);
+    })();
+  }, []);
+
+  const add = async (today: string) => {
+    const data = await addToday(today);
+    if (data) {
+      setToday(data.content);
+      setTodayExist(true);
+    }
+  };
 
   return (
     <>
-      {!isLoading && (
-        <>
-          <div id="today" />
-          <div className={css.container}>
-            <h1>오늘의 다짐을 적어봅시다</h1>
-            {today ? (
-              <>
-                <h1 style={{ fontSize: '28px', margin: '0 auto' }}>
-                  &quot;{today.content}&quot;
-                </h1>
-              </>
+      {isLoaded && (
+        <div className={className} style={style}>
+          <span className={css.title}>오늘의 다짐</span>
+          <div className={`${css.today_container} ${css.input_container}`}>
+            {todayExist ? (
+              <div className={css.today_exist_container}>
+                <span className={css.today_exist}>&#34;{today}&#34;</span>
+                <span className={css.today_exist_name}>- {user!.name}</span>
+              </div>
             ) : (
               <>
-                <div className={css.today}>
-                  <input
-                    type="text"
-                    className={css.today_input}
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                  />
-                  <span
-                    style={{
-                      fontSize: '24px',
-                      cursor: 'pointer',
-                      marginRight: '9px',
-                    }}
-                    onClick={() => onCreate(content)}
-                  >
-                    ⬆️
-                  </span>
-                </div>
+                <input
+                  className={css.input}
+                  placeholder="오늘의 다짐을 입력해 주세요."
+                  value={today}
+                  onChange={(e) => setToday(e.target.value)}
+                />
+                <img
+                  src={`./images/add_circle${isDark ? '_dark' : ''}.svg`}
+                  className={css.icon}
+                  onClick={() => add(today)}
+                />
               </>
             )}
           </div>
-        </>
+          <span className={css.title}>다른사람들의 다짐</span>
+          <div className={css.today_container} style={{ height: '63%' }}>
+            {otherToday.map((value, index) => {
+              return (
+                <div
+                  key={value.id}
+                  className={css.today_exist_container}
+                  style={index != 0 ? { marginTop: '5px' } : {}}
+                >
+                  <span className={css.today_exist}>
+                    &#34;{value.content}&#34;
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       )}
     </>
   );

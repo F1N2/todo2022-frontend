@@ -1,41 +1,86 @@
-.container {
-    background-color: white;
-    width: 60%;
-    margin: 0 auto;
-    margin-block: 12px;
+.title {
+    font-family: 'Pretendard', serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
 }
 
-.today {
+.today_container {
+    margin-block: 20px;
     background-color: white;
+    padding: 10px;
+    border-radius: 16px;
+    overflow: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.today_container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.input_container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+.input {
+    background-color: #ABF0FF;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    padding: 8px;
+    font-family: 'Pretendard', serif;
+    font-style: normal;
+    font-weight: 600;
+    width: 85%;
+}
+
+.today_exist_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ABF0FF;
+    padding-inline: 12px;
+    padding-block: 8px;
+    border-radius: 12px;
     width: 100%;
-    padding: 15px;
-    border: 1px solid #303030;
-    border-radius: 16px;
-    margin: 5px;
 }
 
-.today_input {
-    width: 80%;
-    height: 32px;
-    margin-left: 3px;
-    border-radius: 8px;
+.today_exist {
+    font-family: 'Pretendard', serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
 }
 
-@media (max-width: 790px) {
-    .container {
-        width: 90%;
-    }
+.today_exist_name {
+    font-family: 'Pretendard', serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.input::placeholder {
+    color: #828282;
+}
+
+.icon {
+    cursor: pointer;
 }
 
 @media (prefers-color-scheme: dark) {
-    .container, .today {
+    .today_container {
         background-color: black;
     }
-    .today_input {
-        background-color: #040404;
+    .input, .today_exist_container {
+        background-color: #006C84;
+    }
+    .input::placeholder {
+        color: #A0A0A0;
     }
 }

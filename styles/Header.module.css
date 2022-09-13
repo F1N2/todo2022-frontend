@@ -2,43 +2,26 @@
     position: sticky;
     top: 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    align-content: center;
     width: 100%;
     height: 60px;
     background: white;
     box-shadow: 0 4px 20px rgba(96, 96, 96, 0.25);
     z-index: 5;
-}
-
-.logo {
-    margin-left: 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-inline: 24px;
 }
 
 .header_text {
-    font-size: 15px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .ul {
     display: flex;
     list-style: none;
     gap: 36px;
-    margin-inline: 24px;
-    height: 100%;
     align-items: center;
-    margin: 0 36px 0 0;
-}
-
-.only_pc {
-    font-size: 15px;
-}
-
-@media (max-width: 599px) {
-    .only_pc {
-        display: none;
-    }
 }
 
 @media (prefers-color-scheme: dark) {

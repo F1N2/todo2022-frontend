@@ -1,0 +1,97 @@
+.container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.login_div {
+    float: left;
+    width: 50%;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.form {
+    height: 100%;
+    margin: 0 auto;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.introduce_div {
+    float: right;
+    width: 50%;
+    height: 100%;
+    background-color: #00D1FF;
+}
+
+.h1 {
+    font-family: 'Pretendard', serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 44px;
+    color: #000000;
+    margin-bottom: 16px;
+}
+
+.h2 {
+    font-family: 'Pretendard', serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    color: #000000;
+    margin-block: 12px;
+}
+
+.input {
+    background: #ffffff;
+    border: 1px solid #8B8B8B;
+    border-radius: 12px;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    padding-inline: 8px;
+}
+
+.button {
+    width: 45%;
+    box-sizing: border-box;
+    background: #00D1FF;
+    border: 1px solid #8B8B8B;
+    border-radius: 12px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.button_confirm {
+    background: #00D1FF;
+}
+
+@media (max-width: 1000px) {
+    .form {
+        width: 70%;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .login_div {
+        background-color: #101010;
+    }
+    .introduce_div {
+        background-color: #006C84;
+    }
+    .input {
+        background-color: #202020;
+    }
+    .h1, .h2 {
+        color: #ffffff;
+    }
+    .button {
+        background-color: #000000;
+    }
+    .button_confirm {
+        background: #006C84;
+    }
+}
