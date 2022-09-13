@@ -68,7 +68,10 @@ const Today = ({
             )}
           </div>
           <span className={css.title}>다른사람들의 다짐</span>
-          <div className={css.today_container} style={{ flex: 1 }}>
+          <div
+            className={css.today_container}
+            style={{ flex: 1, marginBottom: 0 }}
+          >
             {otherToday.map((value, index) => {
               return (
                 <div
