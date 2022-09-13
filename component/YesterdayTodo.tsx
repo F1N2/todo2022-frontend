@@ -4,8 +4,8 @@ const YesterdayTodo = ({
   className = '',
   style = {},
 }: {
-  className: string;
-  style: CSSProperties;
+  className?: string;
+  style?: CSSProperties;
 }) => {
   return <div className={className} style={style}></div>;
 };

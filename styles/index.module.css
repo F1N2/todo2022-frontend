@@ -9,6 +9,16 @@
     margin-top: 24px;
 }
 
+.container_left {
+    margin-left: 40px;
+    float: left;
+}
+
+.container_right {
+    margin-right: 40px;
+    float: right;
+}
+
 .box {
     width: 42%;
     height: 70%;

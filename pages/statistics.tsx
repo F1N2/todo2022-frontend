@@ -46,20 +46,18 @@ const Statistics: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
-      <PageWrapper>
-        <h1 className={css.h1}>안녕하세요, {user!.name}님!</h1>
-        <div className={css.container}>
-          <RecentTodo
-            className={css.box}
-            style={{ marginLeft: '40px', float: 'left' }}
-          />
-          <YesterdayTodo
-            className={css.box}
-            style={{ marginRight: '40px', float: 'right' }}
-          />
-        </div>
-      </PageWrapper>
+      {user && (
+        <>
+          <Header />
+          <PageWrapper>
+            <h1 className={css.h1}>안녕하세요, {user.name}님!</h1>
+            <div className={css.container}>
+              <RecentTodo className={`${css.box} ${css.container_left}`} />
+              <YesterdayTodo className={`${css.box} ${css.container_right}`} />
+            </div>
+          </PageWrapper>
+        </>
+      )}
     </>
   );
 };
