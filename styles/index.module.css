@@ -13,9 +13,11 @@
     width: 42%;
     height: 70%;
     max-height: 80%;
-    background-color: #00D1FF;
+    background-color: #ABF0FF;
     padding: 30px;
     border-radius: 16px;
+    display: flex;
+    flex-direction: column;
 }
 
 @media (prefers-color-scheme: dark) {

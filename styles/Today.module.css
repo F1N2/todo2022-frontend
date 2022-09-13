@@ -1,5 +1,5 @@
 .title {
-    font-family: 'Pretendard', serif;
+    font-family: 'Pretendard';
     font-style: normal;
     font-weight: 600;
     font-size: 28px;
@@ -33,7 +33,7 @@
     border: none;
     font-size: 16px;
     padding: 8px;
-    font-family: 'Pretendard', serif;
+    font-family: 'Pretendard';
     font-style: normal;
     font-weight: 600;
     width: 85%;
@@ -52,14 +52,14 @@
 }
 
 .today_exist {
-    font-family: 'Pretendard', serif;
+    font-family: 'Pretendard';
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
 }
 
 .today_exist_name {
-    font-family: 'Pretendard', serif;
+    font-family: 'Pretendard';
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
