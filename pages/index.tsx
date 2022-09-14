@@ -11,6 +11,7 @@ import Login from '../component/Login';
 import SignUp from '../component/SignUp';
 import Today from '../component/Today';
 import Todo from '../component/Todo';
+import Banner from '../component/Banner';
 
 const Home: NextPage = () => {
   const { user } = useAppSelector((state) => state.user);
@@ -54,9 +55,15 @@ const Home: NextPage = () => {
           </PageWrapper>
         </>
       ) : isLoginPage == 'login' ? (
-        <Login />
+        <div className={css.login_container}>
+          <Login />
+          <Banner />
+        </div>
       ) : (
-        <SignUp />
+        <div className={css.login_container}>
+          <SignUp />
+          <Banner />
+        </div>
       )}
     </>
   );
