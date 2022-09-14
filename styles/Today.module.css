@@ -73,6 +73,18 @@
     cursor: pointer;
 }
 
+.other_container {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+@media (max-width: 869px) {
+    .other_container {
+        height: 300px;
+        flex: none;
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     .today_container {
         background-color: black;

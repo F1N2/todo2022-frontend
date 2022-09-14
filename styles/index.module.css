@@ -22,6 +22,24 @@
     flex-direction: column;
 }
 
+@media (min-width: 870px) and (max-width: 1000px) {
+    .box {
+        width: 47%;
+    }
+}
+
+@media (max-width: 869px) { /* Mobile */
+    .container {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+    .box {
+        width: 95%;
+        margin-bottom: 40px;
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     .h1 {
         color: white;

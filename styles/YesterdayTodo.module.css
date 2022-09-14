@@ -53,6 +53,13 @@
     color: #828282;
 }
 
+@media (max-width: 869px) {
+    .container {
+        height: 430px;
+        flex: none;
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     .container {
         background-color: black;

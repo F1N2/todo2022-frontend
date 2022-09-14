@@ -25,6 +25,12 @@ a {
   overflow: hidden;
 }
 
+@media (max-width: 869px) {
+  #__next {
+    overflow: auto;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
