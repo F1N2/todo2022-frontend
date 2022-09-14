@@ -5,6 +5,7 @@ import {
   login as loginReducer,
   logout as logoutReducer,
 } from '../features/user/userSlice';
+import { NextRouter } from 'next/router';
 
 export const info = async () => {
   try {
@@ -84,7 +85,11 @@ export const login = async (
   }
 };
 
-export const logout = async (dispatch: Dispatch<AnyAction>) => {
+export const logout = async (
+  dispatch: Dispatch<AnyAction>,
+  router: NextRouter,
+) => {
   await fetch('/api/auth/logout', { method: 'POST' });
   dispatch(logoutReducer());
+  await router.push('/');
 };

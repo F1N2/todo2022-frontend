@@ -56,7 +56,7 @@ const Statistics: NextPage = () => {
               어제 목표의 {stat.yesterday.percent}%를 달성하였습니다.
             </h1>
             <div className={css.container}>
-              <RecentTodo className={`${css.box} ${css.container_left}`} />
+              <RecentTodo className={css.box} />
               <YesterdayTodo className={`${css.box} ${css.container_right}`} />
             </div>
           </PageWrapper>

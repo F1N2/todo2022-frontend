@@ -1,15 +1,18 @@
 .header {
     position: sticky;
     top: 0;
-    display: flex;
-    justify-content: flex-end;
-    align-content: center;
     width: 100%;
     height: 60px;
     background: white;
     box-shadow: 0 4px 20px rgba(96, 96, 96, 0.25);
     z-index: 5;
-    padding-inline: 24px;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    padding-inline: 40px;
 }
 
 .header_text {
