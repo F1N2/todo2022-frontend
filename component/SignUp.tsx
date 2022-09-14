@@ -5,12 +5,9 @@ import { setLoginPage } from '../features/page/pageSlice';
 import { signup } from '../module/auth';
 
 const SignUp = () => {
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  const [name, setName] = useState('윤도현');
-  const [email, setEmail] = useState('test@gmail.com');
-  const [password, setPassword] = useState('testingPassword');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
 
   const login = (e: SyntheticEvent) => {

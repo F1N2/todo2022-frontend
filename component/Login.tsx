@@ -5,10 +5,8 @@ import { setSignUpPage } from '../features/page/pageSlice';
 import { login } from '../module/auth';
 
 const Login = () => {
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('test@gmail.com');
-  const [password, setPassword] = useState('testingPassword');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
 
   const signUp = (e: SyntheticEvent) => {
