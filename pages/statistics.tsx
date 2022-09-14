@@ -10,13 +10,14 @@ import Header from '../component/Header';
 import PageWrapper from '../component/PageWrapper';
 import RecentTodo from '../component/RecentTodo';
 import YesterdayTodo from '../component/YesterdayTodo';
+import { getStatistics } from '../module/statistics';
+import { setStat } from '../features/stat/statSlice';
 
 const Statistics: NextPage = () => {
   const router = useRouter();
   const { user } = useAppSelector((state) => state.user);
+  const { stat } = useAppSelector((state) => state.stat);
   const dispatch = useAppDispatch();
-
-  const [yesterdayPercent, setYesterdayPercent] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -27,8 +28,9 @@ const Statistics: NextPage = () => {
           return await router.push('/');
         }
       } else return await router.push('/');
+      dispatch(setStat(await getStatistics()));
     })();
-  });
+  }, []);
 
   return (
     <>
@@ -46,11 +48,13 @@ const Statistics: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {user && (
+      {user && stat && (
         <>
           <Header />
           <PageWrapper>
-            <h1 className={css.h1}>안녕하세요, {user.name}님!</h1>
+            <h1 className={css.h1}>
+              어제 목표의 {stat.yesterday.percent}%를 달성하였습니다.
+            </h1>
             <div className={css.container}>
               <RecentTodo className={`${css.box} ${css.container_left}`} />
               <YesterdayTodo className={`${css.box} ${css.container_right}`} />

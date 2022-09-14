@@ -4,10 +4,12 @@ import userReducer from '../features/user/userSlice';
 import thunk from 'redux-thunk';
 import { persistReducer } from 'redux-persist';
 import pageReducer from '../features/page/pageSlice';
+import statReducer from '../features/stat/statSlice';
 
 const reducers = combineReducers({
   user: userReducer,
   page: pageReducer,
+  stat: statReducer,
 });
 
 const persistConfig = {

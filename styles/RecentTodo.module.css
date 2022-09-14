@@ -1,0 +1,48 @@
+.title {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+}
+
+.container {
+    margin-block: 20px;
+    background-color: white;
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list {
+    width: 100%;
+    height: 31%;
+    background-color: #ABF0FF;
+    border-radius: 12px;
+    padding: 8px;
+    padding-inline: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list_text {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .container {
+        background-color: black;
+    }
+    .list {
+        background-color: #006C84;
+    }
+}

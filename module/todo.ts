@@ -9,11 +9,12 @@ export interface Todo {
 
 export const getTodo = async (
   page: number,
+  count?: number,
   from?: Date,
   to?: Date,
 ): Promise<Todo[]> => {
-  const url = `/api/todo?page=${page}${
-    from && to ? `&from=${+from}&to=${+to}` : ''
+  const url = `/api/todo?page=${page}${count ? `&count=${count}` : ''}${
+    from && to ? `&from=${+from}&to=${+to}&now=false` : ''
   }&sort=ASC`;
   try {
     const data = await fetch(url, {
