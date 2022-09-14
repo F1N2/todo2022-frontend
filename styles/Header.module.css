@@ -13,6 +13,7 @@
     justify-content: flex-end;
     align-content: center;
     padding-inline: 40px;
+    height: 60px;
 }
 
 .header_text {
