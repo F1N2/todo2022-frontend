@@ -8,7 +8,7 @@ const Modal = ({
   style = {},
 }: {
   isOpen: boolean;
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   style?: CSSProperties;
 }) => {
@@ -17,7 +17,7 @@ const Modal = ({
       className={className ? `${css.modal} ${className}` : css.modal}
       style={isOpen ? style : { display: 'none' }}
     >
-      {children}
+      {children && children}
     </div>
   );
 };

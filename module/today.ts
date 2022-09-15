@@ -36,9 +36,14 @@ export const addToday = async (content: string): Promise<Today | null> => {
   }
 };
 
-export const getOtherToday = async (user_id: string): Promise<Today[]> => {
+export const getOtherToday = async (
+  user_id: string,
+  page: number,
+): Promise<Today[]> => {
   try {
-    const data = await fetch('/api/today?onlyMine=false', { method: 'GET' });
+    const data = await fetch(`/api/today?onlyMine=false&page=${page}`, {
+      method: 'GET',
+    });
     if (data.status != 200) return [];
     const result: Today[] = [];
     const json = await data.json();

@@ -1,5 +1,5 @@
 import css from '../styles/Today.module.css';
-import { CSSProperties, useEffect, useState } from 'react';
+import { CSSProperties, useEffect, useRef, useState } from 'react';
 import {
   addToday,
   getMyToday,
@@ -7,6 +7,7 @@ import {
   Today as IToday,
 } from '../module/today';
 import { useAppSelector } from '../app/hooks';
+import { getTodo } from '../module/todo';
 
 const Today = ({
   className = '',
@@ -19,16 +20,37 @@ const Today = ({
   const [today, setToday] = useState('');
   const [todayExist, setTodayExist] = useState(false);
   const [otherToday, setOtherToday] = useState<IToday[]>([]);
+  const [page, setPage] = useState(1);
   const { user } = useAppSelector((state) => state.user);
+
+  const observer = useRef<IntersectionObserver>();
+  const box = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     setDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
     (async () => {
       const data = await getMyToday();
       if (data) setToday(data.content);
-      setOtherToday(await getOtherToday(user!.id));
+      setOtherToday(await getOtherToday(user!.id, page));
       setTodayExist(!!data);
     })();
   }, []);
+
+  useEffect(() => {
+    observer.current = new IntersectionObserver((entries, observer) => {
+      entries.forEach(async (entry) => {
+        if (entry.isIntersecting) {
+          observer.unobserve(entry.target);
+          const data = await getOtherToday(user!.id, page + 1);
+          setOtherToday((prevState) => {
+            return [...prevState, ...data];
+          });
+          setPage(data.length < 10 ? 0 : page + 1);
+        }
+      });
+    });
+    box.current && observer.current.observe(box.current);
+  }, [today]);
 
   const add = async (today: string) => {
     const data = await addToday(today);
@@ -85,6 +107,7 @@ const Today = ({
               key={value.id}
               className={css.today_exist_container}
               style={index != 0 ? { marginTop: '5px' } : {}}
+              ref={today.length == index + 1 && page != 0 ? box : undefined}
             >
               <span className={css.today_exist}>&#34;{value.content}&#34;</span>
             </div>

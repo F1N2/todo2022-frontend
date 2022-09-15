@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useState } from 'react';
+import { CSSProperties, useEffect, useRef, useState } from 'react';
 import css from '../styles/YesterdayTodo.module.css';
 import { useAppSelector } from '../app/hooks';
 import { getTodo, Todo } from '../module/todo';
@@ -15,22 +15,47 @@ const YesterdayTodo = ({
   const [page, setPage] = useState(1);
   const [isDark, setDark] = useState(false);
 
+  const observer = useRef<IntersectionObserver>();
+  const box = useRef<HTMLDivElement>(null);
+
+  const date = new Date();
+  const now_year = date.getFullYear();
+  const now_month = date.getMonth();
+  const now_date = date.getDate();
+
   useEffect(() => {
     (async () => {
       setDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
-      const date = new Date();
-      const now_year = date.getFullYear();
-      const now_month = date.getMonth();
-      const now_date = date.getDate();
       const data = await getTodo(
         page,
-        undefined,
+        10,
         new Date(now_year, now_month, now_date - 1),
         new Date(now_year, now_month, now_date),
       );
       setTodo(data);
     })();
   }, []);
+
+  useEffect(() => {
+    observer.current = new IntersectionObserver((entries, observer) => {
+      entries.forEach(async (entry) => {
+        if (entry.isIntersecting) {
+          observer.unobserve(entry.target);
+          const data = await getTodo(
+            page + 1,
+            10,
+            new Date(now_year, now_month, now_date - 1),
+            new Date(now_year, now_month, now_date),
+          );
+          setTodo((prevState) => {
+            return [...prevState, ...data];
+          });
+          setPage(data.length < 10 ? 0 : page + 1);
+        }
+      });
+    });
+    box.current && observer.current.observe(box.current);
+  }, [todo]);
 
   return (
     <div className={className} style={style}>
@@ -45,22 +70,26 @@ const YesterdayTodo = ({
             {stat.yesterday.total} ({stat.yesterday.percent}%)
           </span>
         </div>
-        {todo.map((v) => {
+        {todo.map((value, index) => {
           return (
-            <div key={v.id} className={css.list}>
+            <div
+              key={value.id}
+              className={css.list}
+              ref={todo.length == index + 1 && page != 0 ? box : undefined}
+            >
               <span
                 className={
-                  v.complete
+                  value.complete
                     ? `${css.content} ${css.content_complete}`
                     : css.content
                 }
               >
-                {v.content}
+                {value.content}
               </span>
               <img
                 className={css.icon}
                 src={
-                  v.complete
+                  value.complete
                     ? `./images/check_box${isDark ? '_dark' : ''}.svg`
                     : `./images/check_box_outline_blank${
                         isDark ? '_dark' : ''

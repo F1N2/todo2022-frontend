@@ -1,5 +1,5 @@
 import css from '../styles/Todo.module.css';
-import { CSSProperties, useEffect, useState } from 'react';
+import { CSSProperties, useEffect, useRef, useState } from 'react';
 import {
   addTodo,
   deleteTodo,
@@ -20,6 +20,9 @@ const Todo = ({
   const [content, setContent] = useState('');
   const [page, setPage] = useState(1);
 
+  const observer = useRef<IntersectionObserver>();
+  const box = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     setDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
     (async () => {
@@ -27,6 +30,22 @@ const Todo = ({
       setTodo(data);
     })();
   }, []);
+
+  useEffect(() => {
+    observer.current = new IntersectionObserver((entries, observer) => {
+      entries.forEach(async (entry) => {
+        if (entry.isIntersecting) {
+          observer.unobserve(entry.target);
+          const data = await getTodo(page + 1);
+          setTodo((prevState) => {
+            return [...prevState, ...data];
+          });
+          setPage(data.length < 10 ? 0 : page + 1);
+        }
+      });
+    });
+    box.current && observer.current.observe(box.current);
+  }, [todo]);
 
   const add = async (content: string) => {
     const data = await addTodo(content);
@@ -75,9 +94,13 @@ const Todo = ({
             onClick={() => add(content)}
           />
         </div>
-        {todo.map((value) => {
+        {todo.map((value, index) => {
           return (
-            <div key={value.id} className={css.list}>
+            <div
+              key={value.id}
+              className={css.list}
+              ref={todo.length == index + 1 && page != 0 ? box : undefined}
+            >
               <span
                 className={
                   value.complete
