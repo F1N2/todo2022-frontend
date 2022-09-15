@@ -5,11 +5,13 @@ import thunk from 'redux-thunk';
 import { persistReducer } from 'redux-persist';
 import pageReducer from '../features/page/pageSlice';
 import statReducer from '../features/stat/statSlice';
+import modalReducer from '../features/modal/modalSlice';
 
 const reducers = combineReducers({
   user: userReducer,
   page: pageReducer,
   stat: statReducer,
+  modal: modalReducer,
 });
 
 const persistConfig = {

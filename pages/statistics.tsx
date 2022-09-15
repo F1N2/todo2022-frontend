@@ -12,6 +12,7 @@ import RecentTodo from '../component/RecentTodo';
 import YesterdayTodo from '../component/YesterdayTodo';
 import { getStatistics } from '../module/statistics';
 import { setStat } from '../features/stat/statSlice';
+import ModalManager from '../component/ModalManager';
 
 const Statistics: NextPage = () => {
   const router = useRouter();
@@ -50,6 +51,7 @@ const Statistics: NextPage = () => {
       </Head>
       {user && stat && (
         <>
+          <ModalManager />
           <Header />
           <PageWrapper>
             <h1 className={css.h1}>

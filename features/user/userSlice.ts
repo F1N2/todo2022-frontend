@@ -21,7 +21,7 @@ const userSlice = createSlice({
       };
     },
     logout: (state) => {
-      state.user = undefined;
+      state.user = initialState.user;
     },
   },
 });

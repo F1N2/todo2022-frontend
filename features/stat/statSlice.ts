@@ -10,16 +10,19 @@ const initialState: { stat: Stat } = {
   },
 };
 
-const setSlice = createSlice({
+const statSlice = createSlice({
   name: 'stat',
   initialState,
   reducers: {
     setStat: (state, action: PayloadAction<Stat>) => {
       state.stat = { ...action.payload };
     },
+    resetState: (state) => {
+      state.stat = initialState.stat;
+    },
   },
 });
 
-const { actions, reducer: statReducer } = setSlice;
-export const { setStat } = actions;
+const { actions, reducer: statReducer } = statSlice;
+export const { setStat, resetState } = actions;
 export default statReducer;

@@ -1,6 +1,12 @@
 import { Dispatch } from 'react';
 import { AnyAction } from 'redux';
-import { setLoginPage } from '../features/page/pageSlice';
+import {
+  resetState as resetPageState,
+  setLoginPage,
+} from '../features/page/pageSlice';
+import { resetState as resetStatState } from '../features/stat/statSlice';
+import { resetState as resetModalState } from '../features/modal/modalSlice';
+
 import {
   login as loginReducer,
   logout as logoutReducer,
@@ -90,6 +96,9 @@ export const logout = async (
   router: NextRouter,
 ) => {
   await fetch('/api/auth/logout', { method: 'POST' });
+  dispatch(resetPageState());
+  dispatch(resetModalState());
+  dispatch(resetStatState());
   dispatch(logoutReducer());
   await router.push('/');
 };

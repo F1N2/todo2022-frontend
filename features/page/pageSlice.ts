@@ -6,8 +6,8 @@ interface PageState {
 
 const initialState = { value: 'login' };
 
-const userSlice = createSlice({
-  name: 'login',
+const pageSlice = createSlice({
+  name: 'page',
   initialState,
   reducers: {
     setLoginPage: (state) => {
@@ -16,9 +16,12 @@ const userSlice = createSlice({
     setSignUpPage: (state) => {
       state.value = 'signup';
     },
+    resetState: (state) => {
+      state.value = initialState.value;
+    },
   },
 });
 
-const { actions, reducer: pageReducer } = userSlice;
-export const { setLoginPage, setSignUpPage } = actions;
+const { actions, reducer: pageReducer } = pageSlice;
+export const { setLoginPage, setSignUpPage, resetState } = actions;
 export default pageReducer;

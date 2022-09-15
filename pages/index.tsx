@@ -12,6 +12,7 @@ import SignUp from '../component/SignUp';
 import Today from '../component/Today';
 import Todo from '../component/Todo';
 import Banner from '../component/Banner';
+import ModalManager from '../component/ModalManager';
 
 const Home: NextPage = () => {
   const { user } = useAppSelector((state) => state.user);
@@ -45,6 +46,7 @@ const Home: NextPage = () => {
       </Head>
       {user ? (
         <>
+          <ModalManager />
           <Header />
           <PageWrapper>
             <h1 className={css.h1}>안녕하세요, {user.name}님!</h1>
