@@ -49,8 +49,8 @@ const Home: NextPage = () => {
           <PageWrapper>
             <h1 className={css.h1}>안녕하세요, {user.name}님!</h1>
             <div className={css.container}>
-              <Today className={`${css.box} ${css.container_left}`} />
-              <Todo className={`${css.box} ${css.container_right}`} />
+              <Today className={css.box} />
+              <Todo className={css.box} />
             </div>
           </PageWrapper>
         </>

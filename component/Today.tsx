@@ -65,6 +65,20 @@ const Today = ({
       </div>
       <span className={css.title}>다른사람들의 다짐</span>
       <div className={`${css.today_container} ${css.other_container}`}>
+        {otherToday.length == 0 && (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              paddingBlock: '8px',
+            }}
+          >
+            <span className={css.today_exist_name}>
+              아직 다짐을 작성한 사람이 없습니다 :(
+            </span>
+          </div>
+        )}
         {otherToday.map((value, index) => {
           return (
             <div

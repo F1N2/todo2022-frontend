@@ -68,6 +68,13 @@
     }
 }
 
+@media (max-width: 870px) {
+    .container {
+        width: 100%;
+        flex: 2.5;
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     .container {
         background-color: #101010;

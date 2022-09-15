@@ -56,6 +56,16 @@
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
+    max-width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-x: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.today_exist::-webkit-scrollbar {
+    display: none;
 }
 
 .today_exist_name {
@@ -80,8 +90,11 @@
 
 @media (max-width: 869px) {
     .other_container {
-        height: 300px;
+        max-height: 300px;
         flex: none;
+    }
+    .today_exist {
+        max-width: 70%;
     }
 }
 

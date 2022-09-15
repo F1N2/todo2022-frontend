@@ -46,6 +46,17 @@
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
+    color: black;
+    max-width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-x: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
 
 .content_complete {
@@ -55,8 +66,11 @@
 
 @media (max-width: 869px) {
     .container {
-        height: 430px;
+        max-height: 430px;
         flex: none;
+    }
+    .content {
+        max-width: 70%;
     }
 }
 

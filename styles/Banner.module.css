@@ -19,6 +19,16 @@
     }
 }
 
+@media (max-width: 870px) {
+    .container {
+        width: 100%;
+        flex: 1;
+    }
+    .text {
+        font-size: 36px;
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     .container {
         background-color: #006C84;
