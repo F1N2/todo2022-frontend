@@ -62,6 +62,19 @@ const Todo = ({
     <div className={className} style={style}>
       <span className={css.title}>오늘의 할 일</span>
       <div className={css.list_container}>
+        <div className={css.list} style={{ paddingLeft: '8px', marginTop: 0 }}>
+          <input
+            className={css.input}
+            placeholder="추가하고 싶은 할 일을 입력해 주세요."
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+          <img
+            className={css.icon}
+            src={`./images/add_circle${isDark ? '_dark' : ''}.svg`}
+            onClick={() => add(content)}
+          />
+        </div>
         {todo.map((value) => {
           return (
             <div key={value.id} className={css.list}>
@@ -95,22 +108,6 @@ const Todo = ({
             </div>
           );
         })}
-        <div
-          className={css.list}
-          style={{ paddingLeft: '8px', marginBottom: 0 }}
-        >
-          <input
-            className={css.input}
-            placeholder="추가하고 싶은 할 일을 입력해 주세요."
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-          <img
-            className={css.icon}
-            src={`./images/add_circle${isDark ? '_dark' : ''}.svg`}
-            onClick={() => add(content)}
-          />
-        </div>
       </div>
     </div>
   );
