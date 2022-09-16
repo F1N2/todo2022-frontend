@@ -50,7 +50,7 @@ const Today = ({
       });
     });
     box.current && observer.current.observe(box.current);
-  }, [today]);
+  }, [otherToday]);
 
   const add = async (today: string) => {
     const data = await addToday(today);
@@ -107,7 +107,9 @@ const Today = ({
               key={value.id}
               className={css.today_exist_container}
               style={index != 0 ? { marginTop: '5px' } : {}}
-              ref={today.length == index + 1 && page != 0 ? box : undefined}
+              ref={
+                otherToday.length == index + 1 && page != 0 ? box : undefined
+              }
             >
               <span className={css.today_exist}>&#34;{value.content}&#34;</span>
             </div>
