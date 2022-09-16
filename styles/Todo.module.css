@@ -37,7 +37,6 @@
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
-    color: black;
     max-width: 90%;
     white-space: nowrap;
     overflow: hidden;
@@ -89,13 +88,7 @@
     .list {
         background: #006C84;
     }
-    .content {
-        color: white;
-    }
     .content_complete {
         color: #A0A0A0;
-    }
-    .icon {
-        fill: white;
     }
 }

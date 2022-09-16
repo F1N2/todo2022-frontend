@@ -1,6 +1,5 @@
 .h1 {
     margin: 40px 0 40px 40px;
-    color: black;
 }
 
 .login_container {
@@ -56,9 +55,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    .h1 {
-        color: white;
-    }
     .box {
         background-color: #006C84;
     }

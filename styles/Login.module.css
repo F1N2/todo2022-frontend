@@ -25,7 +25,6 @@
     font-style: normal;
     font-weight: 600;
     font-size: 44px;
-    color: #000000;
     margin-bottom: 16px;
 }
 
@@ -34,7 +33,6 @@
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
-    color: #000000;
     margin-block: 12px;
 }
 
@@ -81,9 +79,6 @@
     }
     .input {
         background-color: #202020;
-    }
-    .h1, .h2 {
-        color: #ffffff;
     }
     .button {
         background-color: #000000;
