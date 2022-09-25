@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { info } from '../module/auth';
-import { logout } from '../features/user/userSlice';
+import { logout } from '../features/slice/userSlice';
 import css from '../styles/index.module.css';
 import Head from 'next/head';
 import Header from '../component/Header';
@@ -11,7 +11,7 @@ import PageWrapper from '../component/PageWrapper';
 import RecentTodo from '../component/RecentTodo';
 import YesterdayTodo from '../component/YesterdayTodo';
 import { getStatistics } from '../module/statistics';
-import { setStat } from '../features/stat/statSlice';
+import { setStat } from '../features/slice/statSlice';
 import ModalManager from '../component/ModalManager';
 
 const Statistics: NextPage = () => {

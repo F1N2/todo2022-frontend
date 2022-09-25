@@ -1,13 +1,8 @@
 import css from '../styles/Today.module.css';
 import { CSSProperties, useEffect, useRef, useState } from 'react';
-import {
-  addToday,
-  getMyToday,
-  getOtherToday,
-  Today as IToday,
-} from '../module/today';
+import { addToday, getMyToday, getOtherToday } from '../module/today';
 import { useAppSelector } from '../app/hooks';
-import { getTodo } from '../module/todo';
+import { Today as IToday } from '../types/Today';
 
 const Today = ({
   className = '',

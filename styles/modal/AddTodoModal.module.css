@@ -1,0 +1,71 @@
+.modal {
+    width: 50%;
+    max-width: 550px;
+    height: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title {
+    margin: 0;
+}
+
+.content {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.desc {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    height: 8.5em;
+    resize: none;
+}
+
+.modal_under {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.green_button {
+    width: 90px;
+    height: 40px;
+    border: 1px solid #00ff00;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.red_button {
+    width: 90px;
+    height: 40px;
+    border: 1px solid red;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+@media (max-width: 869px) {
+    .title {
+        font-size: 32px;
+    }
+    .content, .desc {
+        font-size: 28px;
+    }
+    .modal {
+        width: 80%;
+        height: 60%;
+        padding: 24px;
+    }
+}

@@ -1,14 +1,18 @@
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { setModal } from '../features/modal/modalSlice';
+import { setModal, setModalData } from '../features/slice/modalSlice';
 import { SyntheticEvent } from 'react';
-import Modal from './Modal';
+import TodoModal from './modal/TodoModal';
+import AddTodoModal from './modal/AddTodoModal';
 
 const ModalManager = () => {
   const { modal } = useAppSelector((state) => state.modal);
   const dispatch = useAppDispatch();
 
   const closeModal = (e: SyntheticEvent) => {
-    if (e.target == e.currentTarget) dispatch(setModal(false));
+    if (e.target == e.currentTarget) {
+      dispatch(setModalData(null));
+      dispatch(setModal(false));
+    }
   };
 
   return (
@@ -26,7 +30,10 @@ const ModalManager = () => {
             alignItems: 'center',
           }}
           onClick={closeModal}
-        ></div>
+        >
+          <TodoModal isOpen={modal == 'todo'} />
+          <AddTodoModal isOpen={modal == 'add_todo'} />
+        </div>
       )}
     </>
   );

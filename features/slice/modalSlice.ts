@@ -14,12 +14,12 @@ const modalSlice = createSlice({
     setModal: (state, action: PayloadAction<string | false>) => {
       state.modal = action.payload;
     },
-    resetState: (state) => {
-      state.modal = initialState.modal;
+    setModalData: (state, action: PayloadAction<any>) => {
+      state.data = action.payload;
     },
   },
 });
 
 const { actions, reducer: modalReducer } = modalSlice;
-export const { setModal, resetState } = actions;
+export const { setModal, setModalData } = actions;
 export default modalReducer;

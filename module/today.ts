@@ -1,10 +1,4 @@
-export interface Today {
-  id: string;
-  user_id: string;
-  content: string;
-  created: Date;
-  updated: Date;
-}
+import { Today } from '../types/Today';
 
 export const getMyToday = async (): Promise<Today | null> => {
   try {

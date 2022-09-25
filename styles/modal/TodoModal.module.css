@@ -1,0 +1,52 @@
+.modal {
+    width: 50%;
+    max-width: 550px;
+    height: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content {
+    margin: 0;
+}
+
+.date {
+    text-align: left;
+}
+
+.modal_under {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.button {
+    width: 90px;
+    height: 40px;
+    border: 1px solid red;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+@media (max-width: 869px) {
+    .modal {
+        width: 80%;
+        height: 60%;
+        padding: 24px;
+    }
+    .modal_under {
+        flex-direction: column;
+    }
+    .button {
+        margin-top: 24px;
+    }
+    .date {
+        text-align: right;
+    }
+}

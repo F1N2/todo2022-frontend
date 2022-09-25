@@ -1,11 +1,4 @@
-export interface Todo {
-  id: string;
-  user_id: string;
-  content: string;
-  complete: boolean;
-  created: Date;
-  updated: Date;
-}
+import { Todo } from '../types/Todo';
 
 export const getTodo = async (
   page: number,
@@ -34,13 +27,31 @@ export const getTodo = async (
   }
 };
 
-export const addTodo = async (content: string): Promise<Todo | null> => {
+export const getTodoById = async (id: string): Promise<Todo | null> => {
+  try {
+    const data = await fetch(`/api/todo/${id}`, { method: 'GET' });
+    const json = await data.json();
+    if (!json.id) return null;
+    json.created = new Date(json.created);
+    json.updated = new Date(json.updated);
+    return json as Todo;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+};
+
+export const addTodo = async (
+  content: string,
+  description: string,
+): Promise<Todo | null> => {
   try {
     const data = await fetch('/api/todo', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         content,
+        description,
         complete: false,
       }),
     });

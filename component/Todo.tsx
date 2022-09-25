@@ -1,12 +1,9 @@
 import css from '../styles/Todo.module.css';
 import { CSSProperties, useEffect, useRef, useState } from 'react';
-import {
-  addTodo,
-  deleteTodo,
-  getTodo,
-  Todo as ITodo,
-  updateTodo,
-} from '../module/todo';
+import { deleteTodo, getTodo, updateTodo } from '../module/todo';
+import { setModal, setModalData } from '../features/slice/modalSlice';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { Todo as ITodo } from '../types/Todo';
 
 const Todo = ({
   className = '',
@@ -17,8 +14,10 @@ const Todo = ({
 }) => {
   const [isDark, setDark] = useState(false);
   const [todo, setTodo] = useState<ITodo[]>([]);
-  const [content, setContent] = useState('');
   const [page, setPage] = useState(1);
+
+  const dispatch = useAppDispatch();
+  const { modal, data: modalData } = useAppSelector((state) => state.modal);
 
   const observer = useRef<IntersectionObserver>();
   const box = useRef<HTMLDivElement>(null);
@@ -47,16 +46,6 @@ const Todo = ({
     box.current && observer.current.observe(box.current);
   }, [todo]);
 
-  const add = async (content: string) => {
-    const data = await addTodo(content);
-    if (data) {
-      setTodo((prevState) => {
-        return [...prevState, data];
-      });
-      setContent('');
-    }
-  };
-
   const remove = async (todo: ITodo) => {
     await deleteTodo(todo.id);
     setTodo((prevState) => {
@@ -77,60 +66,70 @@ const Todo = ({
     });
   };
 
+  const listClick = (e: any) => {
+    if (e.target.localName != 'img') {
+      dispatch(setModalData(e.currentTarget.id));
+      dispatch(setModal('todo'));
+    }
+  };
+
   return (
     <div className={className} style={style}>
       <span className={css.title}>오늘의 할 일</span>
       <div className={css.list_container}>
-        <div className={css.list} style={{ paddingLeft: '8px', marginTop: 0 }}>
-          <input
-            className={css.input}
-            placeholder="추가하고 싶은 할 일을 입력해 주세요."
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-          <img
-            className={css.icon}
-            src={`./images/add_circle${isDark ? '_dark' : ''}.svg`}
-            onClick={() => add(content)}
-          />
+        <div
+          className={css.list}
+          style={{
+            height: '50px',
+            paddingLeft: '8px',
+            marginTop: 0,
+            justifyContent: 'center',
+          }}
+          onClick={() => dispatch(setModal('add_todo'))}
+        >
+          <span className={css.content}>추가하기</span>
         </div>
-        {todo.map((value, index) => {
-          return (
-            <div
-              key={value.id}
-              className={css.list}
-              ref={todo.length == index + 1 && page != 0 ? box : undefined}
-            >
-              <span
-                className={
-                  value.complete
-                    ? `${css.content} ${css.content_complete}`
-                    : css.content
-                }
+        <div className={css.scroll}>
+          {todo.map((value, index) => {
+            return (
+              <div
+                id={value.id}
+                key={value.id}
+                className={css.list}
+                ref={todo.length == index + 1 && page != 0 ? box : undefined}
+                onClick={listClick}
               >
-                {value.content}
-              </span>
-              <div>
-                <img
-                  className={css.icon}
-                  src={`./images/delete${isDark ? '_dark' : ''}.svg`}
-                  onClick={() => remove(value)}
-                />
-                <img
-                  className={css.icon}
-                  src={
+                <span
+                  className={
                     value.complete
-                      ? `./images/check_box${isDark ? '_dark' : ''}.svg`
-                      : `./images/check_box_outline_blank${
-                          isDark ? '_dark' : ''
-                        }.svg`
+                      ? `${css.content} ${css.content_complete}`
+                      : css.content
                   }
-                  onClick={() => change(value)}
-                />
+                >
+                  {value.content}
+                </span>
+                <div>
+                  <img
+                    className={css.icon}
+                    src={`./images/delete${isDark ? '_dark' : ''}.svg`}
+                    onClick={() => remove(value)}
+                  />
+                  <img
+                    className={css.icon}
+                    src={
+                      value.complete
+                        ? `./images/check_box${isDark ? '_dark' : ''}.svg`
+                        : `./images/check_box_outline_blank${
+                            isDark ? '_dark' : ''
+                          }.svg`
+                    }
+                    onClick={() => change(value)}
+                  />
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );

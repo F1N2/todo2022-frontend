@@ -1,5 +1,6 @@
 import { CSSProperties, ReactNode } from 'react';
 import css from '../styles/Modal.module.css';
+import { useAppSelector } from '../app/hooks';
 
 const Modal = ({
   isOpen,
@@ -12,13 +13,20 @@ const Modal = ({
   className?: string;
   style?: CSSProperties;
 }) => {
+  const { modal } = useAppSelector((state) => state.modal);
+
   return (
-    <div
-      className={className ? `${css.modal} ${className}` : css.modal}
-      style={isOpen ? style : { display: 'none' }}
-    >
-      {children && children}
-    </div>
+    <>
+      {isOpen && (
+        <div
+          id={modal.toString()}
+          className={className ? `${css.modal} ${className}` : css.modal}
+          style={style}
+        >
+          {children && children}
+        </div>
+      )}
+    </>
   );
 };
 

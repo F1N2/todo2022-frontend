@@ -17,12 +17,12 @@ const statSlice = createSlice({
     setStat: (state, action: PayloadAction<Stat>) => {
       state.stat = { ...action.payload };
     },
-    resetState: (state) => {
+    resetStat: (state) => {
       state.stat = initialState.stat;
     },
   },
 });
 
 const { actions, reducer: statReducer } = statSlice;
-export const { setStat, resetState } = actions;
+export const { setStat, resetStat } = actions;
 export default statReducer;

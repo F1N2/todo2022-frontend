@@ -1,7 +1,9 @@
 import { CSSProperties, useEffect, useRef, useState } from 'react';
 import css from '../styles/YesterdayTodo.module.css';
-import { useAppSelector } from '../app/hooks';
-import { getTodo, Todo } from '../module/todo';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { getTodo } from '../module/todo';
+import { Todo } from '../types/Todo';
+import { setModal, setModalData } from '../features/slice/modalSlice';
 
 const YesterdayTodo = ({
   className = '',
@@ -10,6 +12,7 @@ const YesterdayTodo = ({
   className?: string;
   style?: CSSProperties;
 }) => {
+  const dispatch = useAppDispatch();
   const { stat } = useAppSelector((state) => state.stat);
   const [todo, setTodo] = useState<Todo[]>([]);
   const [page, setPage] = useState(1);
@@ -57,13 +60,20 @@ const YesterdayTodo = ({
     box.current && observer.current.observe(box.current);
   }, [todo]);
 
+  const listClick = (e: any) => {
+    if (e.target.localName != 'img') {
+      dispatch(setModalData(e.currentTarget.id));
+      dispatch(setModal('todo'));
+    }
+  };
+
   return (
     <div className={className} style={style}>
       <span className={css.title}>어제의 할 일</span>
       <div className={css.container}>
         <div
           className={css.list}
-          style={{ marginTop: 0, justifyContent: 'center' }}
+          style={{ marginTop: 0, justifyContent: 'center', cursor: 'unset' }}
         >
           <span className={css.yesterday_text}>
             어제의 할 일 달성도 : {stat.yesterday.checked}/
@@ -74,8 +84,10 @@ const YesterdayTodo = ({
           return (
             <div
               key={value.id}
+              id={value.id}
               className={css.list}
               ref={todo.length == index + 1 && page != 0 ? box : undefined}
+              onClick={listClick}
             >
               <span
                 className={

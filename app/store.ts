@@ -1,11 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
-import userReducer from '../features/user/userSlice';
+import userReducer from '../features/slice/userSlice';
 import thunk from 'redux-thunk';
 import { persistReducer } from 'redux-persist';
-import pageReducer from '../features/page/pageSlice';
-import statReducer from '../features/stat/statSlice';
-import modalReducer from '../features/modal/modalSlice';
+import pageReducer from '../features/slice/pageSlice';
+import statReducer from '../features/slice/statSlice';
+import modalReducer from '../features/slice/modalSlice';
 
 const reducers = combineReducers({
   user: userReducer,

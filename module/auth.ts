@@ -1,16 +1,13 @@
 import { Dispatch } from 'react';
 import { AnyAction } from 'redux';
-import {
-  resetState as resetPageState,
-  setLoginPage,
-} from '../features/page/pageSlice';
-import { resetState as resetStatState } from '../features/stat/statSlice';
-import { resetState as resetModalState } from '../features/modal/modalSlice';
+import { resetPage, setLoginPage } from '../features/slice/pageSlice';
+import { resetStat } from '../features/slice/statSlice';
+import { setModal } from '../features/slice/modalSlice';
 
 import {
   login as loginReducer,
   logout as logoutReducer,
-} from '../features/user/userSlice';
+} from '../features/slice/userSlice';
 import { NextRouter } from 'next/router';
 
 export const info = async () => {
@@ -96,9 +93,9 @@ export const logout = async (
   router: NextRouter,
 ) => {
   await fetch('/api/auth/logout', { method: 'POST' });
-  dispatch(resetPageState());
-  dispatch(resetModalState());
-  dispatch(resetStatState());
+  dispatch(resetPage());
+  dispatch(setModal(false));
+  dispatch(resetStat());
   dispatch(logoutReducer());
   await router.push('/');
 };

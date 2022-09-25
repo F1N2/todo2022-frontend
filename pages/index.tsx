@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import Head from 'next/head';
 import { info } from '../module/auth';
-import { logout } from '../features/user/userSlice';
+import { logout } from '../features/slice/userSlice';
 import PageWrapper from '../component/PageWrapper';
 import Header from '../component/Header';
 import Login from '../component/Login';
@@ -16,7 +16,7 @@ import ModalManager from '../component/ModalManager';
 
 const Home: NextPage = () => {
   const { user } = useAppSelector((state) => state.user);
-  const { value: isLoginPage } = useAppSelector((state) => state.page);
+  const { page } = useAppSelector((state) => state.page);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const Home: NextPage = () => {
             </div>
           </PageWrapper>
         </>
-      ) : isLoginPage == 'login' ? (
+      ) : page == 'login' ? (
         <div className={css.login_container}>
           <Login />
           <Banner />

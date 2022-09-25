@@ -1,7 +1,7 @@
 import css from '../styles/Login.module.css';
 import { useAppDispatch } from '../app/hooks';
 import { SyntheticEvent, useState } from 'react';
-import { setLoginPage } from '../features/page/pageSlice';
+import { setLoginPage } from '../features/slice/pageSlice';
 import { signup } from '../module/auth';
 
 const SignUp = () => {
